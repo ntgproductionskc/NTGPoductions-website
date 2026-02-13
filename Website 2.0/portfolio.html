@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | NTGProductions</title>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script>
+      window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
+    <style>
+        :root {
+            --gold: #ff9c38;
+            --dark: #000000;
+            --darker: #0a0a0a;
+            --card-bg: #1a1a1a;
+            --light-gray: #8e8e93;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            background: var(--dark);
+            background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* Orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 156, 56, 0.08) 0%, rgba(255, 156, 56, 0.04) 30%, rgba(255, 156, 56, 0.02) 50%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(80px);
+        }
+
+        .orb-1 {
+            top: 5%;
+            right: -15%;
+            width: 680px;
+            height: 680px;
+            animation: float 32s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            top: 55%;
+            left: -18%;
+            width: 640px;
+            height: 640px;
+            animation: float 36s ease-in-out infinite reverse;
+        }
+
+        .orb-3 {
+            bottom: 15%;
+            right: 12%;
+            width: 660px;
+            height: 660px;
+            animation: float 29s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+            25% {
+                transform: translate(25px, -25px);
+                opacity: 0.85;
+            }
+            50% { 
+                transform: translate(-40px, 40px);
+                opacity: 0.75;
+            }
+            75% {
+                transform: translate(15px, 25px);
+                opacity: 0.9;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-decoration: none;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+        
+        .logo span {
+            color: var(--white);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--light-gray);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-cta {
+            padding: 0.5rem 1.3rem;
+            background: transparent;
+            color: var(--gold);
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1.5px solid var(--gold);
+        }
+
+        .nav-cta:hover {
+            background: var(--gold);
+            color: var(--dark);
+        }
+
+        /* Hero */
+        .portfolio-hero {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10rem 2rem 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .portfolio-hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -2px;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-hero p {
+            font-size: 1.2rem;
+            color: var(--light-gray);
+            text-align: center;
+        }
+
+        .highlight {
+            color: var(--gold);
+        }
+
+        /* Filter Tabs */
+        .filter-section {
+            padding: 3rem 2rem;
+            background: var(--darker);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .filter-tabs {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.7rem 1.8rem;
+            background: transparent;
+            color: var(--light-gray);
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .filter-btn.active {
+            background: var(--gold);
+            color: var(--dark);
+            border-color: var(--gold);
+        }
+
+        /* Portfolio Grid */
+        .portfolio-section {
+            padding: 4rem 2rem 8rem;
+            background: var(--dark);
+            position: relative;
+            z-index: 1;
+        }
+
+        .portfolio-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .portfolio-card {
+            background: var(--card-bg);
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.95) 0%, rgba(26, 26, 26, 0.8) 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 156, 56, 0.4);
+            box-shadow: 0 20px 50px rgba(255, 156, 56, 0.2);
+        }
+
+        .portfolio-card.hidden {
+            display: none;
+        }
+
+        .card-media {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .card-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .portfolio-card:hover .card-media img {
+            transform: scale(1.05);
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .play-overlay::after {
+            content: '▶';
+            color: var(--dark);
+            font-size: 1.5rem;
+            margin-left: 4px;
+        }
+
+        .portfolio-card:hover .play-overlay {
+            transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 10px 30px rgba(255, 156, 56, 0.5);
+        }
+
+        .card-content {
+            padding: 2rem;
+        }
+
+        .card-category {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(255, 156, 56, 0.15);
+            color: var(--gold);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .card-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.8rem;
+        }
+
+        .card-details {
+            margin-bottom: 1rem;
+        }
+
+        .card-details p {
+            color: var(--light-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-details strong {
+            color: var(--white);
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: 6rem 2rem;
+            background: var(--darker);
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: var(--light-gray);
+            margin-bottom: 2.5rem;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--gold);
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 156, 56, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            text-align: center;
+            color: var(--light-gray);
+        }
+
+        /* Mobile */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--white);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-tabs {
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo"><span>NTG</span>PRODUCTIONS</a>
+            <ul class="nav-links">
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="booking.html" class="nav-cta">Let's Talk</a></li>
+            </ul>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="portfolio-hero">
+        <div>
+            <h1>Our <span class="highlight">Work</span></h1>
+            <p>Real campaigns. Real results. Real clients.</p>
+        </div>
+    </section>
+
+    <section class="filter-section">
+        <div class="filter-tabs">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="automotive">Automotive</button>
+            <button class="filter-btn" data-filter="sports">Sports</button>
+            <button class="filter-btn" data-filter="nightlife">Nightlife</button>
+            <button class="filter-btn" data-filter="restaurants">Restaurants</button>
+            <button class="filter-btn" data-filter="entertainment">Entertainment</button>
+        </div>
+    </section>
+
+    <section class="portfolio-section">
+        <div class="portfolio-grid">
+            
+            <!-- Sports: NFL Interview -->
+            <div class="portfolio-card" data-category="sports">
+                <div class="card-media" data-video-url="https://www.youtube.com/watch?v=qT2tZhexHac">
+                    <img src="https://img.youtube.com/vi/qT2tZhexHac/maxresdefault.jpg" alt="Boo Smith NFL Interview">
+                    <div class="play-overlay"></div>
+                </div>
+                <div class="card-content">
+                    <span class="card-category">Sports</span>
+                    <h3>NFL Player Interview</h3>
+                    <div class="card-details">
+                        <p><strong>Client:</strong> Kansas City Chiefs</p>
+                        <p><strong>Delivered:</strong> Professional interview production featuring defensive back Boo Smith</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Automotive: Ford Dealership -->
+            <div class="portfolio-card" data-category="automotive">
+                <div class="card-media" data-video-url="https://www.youtube.com/watch?v=G6ab3uZp7b0">
+                    <img src="https://img.youtube.com/vi/G6ab3uZp7b0/maxresdefault.jpg" alt="Ford Dealership">
+                    <div class="play-overlay"></div>
+                </div>
+                <div class="card-content">
+                    <span class="card-category">Automotive</span>
+                    <h3>Ford F-250 Dealership Campaign</h3>
+                    <div class="card-details">
+                        <p><strong>Client:</strong> Local Ford Dealership</p>
+                        <p><strong>Delivered:</strong> Bilingual commercial (English & Spanish) showcasing features and expertise</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nightlife: DJ Astro -->
+            <div class="portfolio-card" data-category="nightlife">
+                <div class="card-media" data-video-url="https://youtube.com/shorts/KXkdMzUual0">
+                    <img src="https://img.youtube.com/vi/KXkdMzUual0/maxresdefault.jpg" alt="DJ Astro Event">
+                    <div class="play-overlay"></div>
+                </div>
+                <div class="card-content">
+                    <span class="card-category">Nightlife</span>
+                    <h3>DJ Astro Nightclub Event</h3>
+                    <div class="card-details">
+                        <p><strong>Client:</strong> Premium Nightlife Venue</p>
+                        <p><strong>Delivered:</strong> High-energy event coverage capturing atmosphere and crowd engagement</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nightlife: O'Dowd's -->
+            <div class="portfolio-card" data-category="nightlife">
+                <div class="card-media" data-video-url="https://youtube.com/shorts/EKJNB7XPeFk">
+                    <img src="https://img.youtube.com/vi/EKJNB7XPeFk/maxresdefault.jpg" alt="O'Dowd's Nightlife">
+                    <div class="play-overlay"></div>
+                </div>
+                <div class="card-content">
+                    <span class="card-category">Nightlife</span>
+                    <h3>O'Dowd's Nightlife Event</h3>
+                    <div class="card-details">
+                        <p><strong>Client:</strong> O'Dowd's</p>
+                        <p><strong>Delivered:</strong> High-energy nightlife content showcasing venue atmosphere and crowd</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Entertainment: DJ High Noon -->
+            <div class="portfolio-card" data-category="entertainment">
+                <div class="card-media" data-video-url="https://youtube.com/shorts/I0BEE87a21U">
+                    <img src="https://img.youtube.com/vi/I0BEE87a21U/maxresdefault.jpg" alt="DJ High Noon">
+                    <div class="play-overlay"></div>
+                </div>
+                <div class="card-content">
+                    <span class="card-category">Entertainment</span>
+                    <h3>DJ High Noon Brand Video</h3>
+                    <div class="card-details">
+                        <p><strong>Client:</strong> DJ High Noon</p>
+                        <p><strong>Delivered:</strong> Promotional video that generated 800+ ticket sales for weddings and events</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Entertainment: Bartender Brawl 2025 -->
+            <div class="portfolio-card" data-category="entertainment">
+                <div class="card-media" data-video-url="https://www.youtube.com/watch?v=_E3eGCwa3y0">
+                    <img src="https://img.youtube.com/vi/_E3eGCwa3y0/maxresdefault.jpg" alt="Bartender Brawl 2025">
+                    <div class="play-overlay"></div>
+                </div>
+                <div class="card-content">
+                    <span class="card-category">Entertainment</span>
+                    <h3>Bartender Brawl 2025</h3>
+                    <div class="card-details">
+                        <p><strong>Client:</strong> Bartender Brawl Event</p>
+                        <p><strong>Delivered:</strong> High-energy boxing event coverage featuring bartenders competing head-to-head</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Restaurants: O'Dowd's -->
+            <div class="portfolio-card" data-category="restaurants">
+                <div class="card-media" data-video-url="https://youtube.com/shorts/tSX7j5hcSnU">
+                    <img src="https://img.youtube.com/vi/tSX7j5hcSnU/maxresdefault.jpg" alt="O'Dowd's Restaurant">
+                    <div class="play-overlay"></div>
+                </div>
+                <div class="card-content">
+                    <span class="card-category">Restaurants</span>
+                    <h3>O'Dowd's Restaurant Video</h3>
+                    <div class="card-details">
+                        <p><strong>Client:</strong> O'Dowd's</p>
+                        <p><strong>Delivered:</strong> Restaurant promotional content showcasing atmosphere and dining experience</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sports: NASCAR -->
+            <div class="portfolio-card" data-category="sports">
+                <div class="card-media" data-video-url="https://youtube.com/shorts/zVhCvwtaf7w">
+                    <img src="https://img.youtube.com/vi/zVhCvwtaf7w/maxresdefault.jpg" alt="NASCAR Event">
+                    <div class="play-overlay"></div>
+                </div>
+                <div class="card-content">
+                    <span class="card-category">Sports</span>
+                    <h3>NASCAR Event Coverage</h3>
+                    <div class="card-details">
+                        <p><strong>Client:</strong> Showboss at NASCAR</p>
+                        <p><strong>Delivered:</strong> High-energy content capturing excitement and brand presence at major racing event</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Ready to See Results Like These?</h2>
+        <p>Let's build something that actually brings in customers.</p>
+        <a href="booking.html" class="btn-primary">Book a Free Call</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 NTGProductions. Marketing that actually works.</p>
+    </footer>
+
+    <script>
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const portfolioCards = document.querySelectorAll('.portfolio-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.getAttribute('data-filter');
+                
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                portfolioCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    
+                    if (filter === 'all' || category === filter) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        // Video player
+        const videoCards = document.querySelectorAll('.card-media');
+        
+        videoCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const videoUrl = this.getAttribute('data-video-url');
+                window.open(videoUrl, '_blank');
+            });
+        });
+    </script>
+</body>
+</html>
